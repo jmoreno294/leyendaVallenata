@@ -1,0 +1,429 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Votaciones Festival Vallenato 2027</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: marco tipo app, mobile-first. Público = pila de pantallas con barra inferior; Admin = pestañas superiores y tablas con scroll propio. */
+:root{
+  --bg:#f5f6f8; --surface:#ffffff; --surface2:#eceef3; --ink:#14213d; --muted:#586179; --line:#d9dce5;
+  --accent:#b3122b; --on-accent:#ffffff; --gold:#e8a900; --gold-ink:#5a4200; --blue:#1d4e9e;
+  --ok:#1b7a4b; --ok-bg:#dcf2e6; --warn-bg:#fdf0c9; --warn:#7a5800; --off-bg:#e4e6ec;
+  --av1:#1d4e9e; --av2:#b3122b; --av3:#1b7a4b; --av4:#7a4b00;
+  --display:'Alfa Slab One',Georgia,'Times New Roman',serif; --body:'Figtree',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --r:10px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1424; --surface:#172038; --surface2:#1f2a47; --ink:#eef0f6; --muted:#a2abc4; --line:#2b3757;
+  --accent:#ff5468; --on-accent:#1a0408; --gold:#f2b705; --gold-ink:#f2d27a; --blue:#7fa9f0;
+  --ok:#5fd79a; --ok-bg:#12372a; --warn-bg:#3a2f0b; --warn:#f2d27a; --off-bg:#222c47;
+  --av1:#3a6fc4; --av2:#c93a4e; --av3:#2f9a67; --av4:#a8741c; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1424; --surface:#172038; --surface2:#1f2a47; --ink:#eef0f6; --muted:#a2abc4; --line:#2b3757;
+  --accent:#ff5468; --on-accent:#1a0408; --gold:#f2b705; --gold-ink:#f2d27a; --blue:#7fa9f0;
+  --ok:#5fd79a; --ok-bg:#12372a; --warn-bg:#3a2f0b; --warn:#f2d27a; --off-bg:#222c47;
+  --av1:#3a6fc4; --av2:#c93a4e; --av3:#2f9a67; --av4:#a8741c; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.app{max-width:960px;margin:0 auto;padding-inline:16px;padding-block:0 96px;min-height:100vh}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--ink);color:var(--bg);margin-inline:-16px;padding:10px 16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.brand{display:flex;flex-direction:column;line-height:1.1;min-width:0}
+.brand b{font-family:var(--display);font-weight:400;font-size:17px;letter-spacing:.02em}
+.brand small{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.75}
+.seg{display:flex;background:rgba(255,255,255,.14);border-radius:999px;padding:3px}
+.seg button{border:0;background:transparent;color:inherit;padding:6px 14px;border-radius:999px;font-weight:600;font-size:13px}
+.seg button[aria-pressed="true"]{background:var(--gold);color:#2a1f00}
+.stripe{height:5px;margin-inline:-16px;background:linear-gradient(90deg,var(--gold) 0 34%,var(--blue) 34% 67%,var(--accent) 67%)}
+h1,h2,h3{margin:0;text-wrap:balance}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(26px,6vw,38px);line-height:1.08}
+h2{font-size:19px;font-weight:700}
+h3{font-size:16px;font-weight:700}
+.muted{color:var(--muted)}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.stack{display:flex;flex-direction:column;gap:16px}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(min(100%,270px),1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;min-width:0}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:10px 16px;font-weight:600;min-height:44px}
+.btn.primary{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.btn.dark{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.sm{min-height:36px;padding:6px 12px;font-size:13px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700;white-space:nowrap}
+.pill.abierta{background:var(--ok-bg);color:var(--ok)}
+.pill.programada{background:var(--warn-bg);color:var(--warn)}
+.pill.cerrada{background:var(--off-bg);color:var(--muted)}
+.pill.votado{background:var(--ink);color:var(--bg)}
+.hero{padding-block:22px 6px;display:flex;flex-direction:column;gap:8px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-weight:600;font-size:13px;white-space:nowrap}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.vcard{display:flex;flex-direction:column;gap:10px;text-align:left;width:100%}
+.vcard .cat{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.vcard .meta{font-size:13px;color:var(--muted)}
+.tabbar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);display:flex;justify-content:center;padding-bottom:env(safe-area-inset-bottom,0px)}
+.tabbar nav{display:flex;width:100%;max-width:960px}
+.tabbar button{flex:1;border:0;background:transparent;padding:10px 4px;font-size:12px;font-weight:600;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:2px;min-height:56px}
+.tabbar button[aria-current="page"]{color:var(--accent)}
+.tabbar svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.steps{display:flex;gap:6px;font-size:12px;font-weight:700;color:var(--muted)}
+.steps span{flex:1;border-top:4px solid var(--line);padding-top:4px}
+.steps span.on{border-color:var(--accent);color:var(--ink)}
+.opt{display:flex;gap:14px;align-items:flex-start;width:100%;text-align:left;background:var(--surface);border:2px solid var(--line);border-radius:var(--r);padding:14px;min-width:0}
+.opt[aria-checked="true"]{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)}
+.opt .txt{min-width:0;flex:1}
+.opt .radio{width:22px;height:22px;border:2px solid var(--line);border-radius:50%;flex:none;margin-top:2px;display:grid;place-items:center}
+.opt[aria-checked="true"] .radio{border-color:var(--accent)}
+.opt[aria-checked="true"] .radio::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--accent)}
+.av{width:52px;height:52px;border-radius:12px;flex:none;display:grid;place-items:center;color:#fff;font-family:var(--display);font-size:19px}
+.av.c0{background:var(--av1)}.av.c1{background:var(--av2)}.av.c2{background:var(--av3)}.av.c3{background:var(--av4)}
+.sticky-act{position:sticky;bottom:calc(64px + env(safe-area-inset-bottom,0px));display:flex;gap:10px;background:var(--bg);padding-block:10px;margin-top:4px}
+.sticky-act .btn{flex:1}
+.notice{border-radius:var(--r);padding:12px 14px;font-size:14px;display:flex;gap:10px}
+.notice.warn{background:var(--warn-bg);color:var(--warn)}
+.notice.info{background:var(--surface2)}
+.notice b{font-weight:700}
+.bar{height:12px;background:var(--surface2);border-radius:6px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--blue);border-radius:6px}
+.bar i.lead{background:var(--accent)}
+.res{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center}
+.res .bar{grid-column:1/-1}
+.num{font-variant-numeric:tabular-nums;font-weight:700}
+label{font-weight:600;font-size:14px;display:block;margin-bottom:4px}
+input[type=text],input[type=email],input[type=datetime-local],select,textarea{width:100%;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:10px 12px;min-height:44px}
+.field{min-width:0}
+.form{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.form .full{grid-column:1/-1}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:620px}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle;font-size:14px}
+th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--surface2)}
+tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.kpis{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(130px,1fr))}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.kpi b{display:block;font-family:var(--display);font-weight:400;font-size:28px;font-variant-numeric:tabular-nums}
+.kpi span{font-size:12px;color:var(--muted)}
+.atabs{display:flex;gap:6px;overflow-x:auto;border-bottom:1px solid var(--line);margin-top:14px}
+.atabs button{border:0;background:transparent;padding:10px 14px;font-weight:600;color:var(--muted);border-bottom:3px solid transparent;white-space:nowrap}
+.atabs button[aria-current="page"]{color:var(--ink);border-color:var(--accent)}
+.rn{font-size:11px;font-weight:700;background:var(--surface2);color:var(--muted);border-radius:4px;padding:1px 6px;letter-spacing:.04em}
+.optrow{display:flex;gap:8px}
+.optrow input{flex:1}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(76px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:8px;font-weight:600;z-index:40;max-width:calc(100% - 32px)}
+.big-ok{width:72px;height:72px;border-radius:50%;background:var(--ok-bg);color:var(--ok);display:grid;place-items:center;margin-inline:auto}
+.big-ok svg{width:38px;height:38px;stroke:currentColor;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.center{text-align:center}
+.login{max-width:440px;margin:0 auto;padding-block:28px}
+.toggle{display:flex;gap:10px;align-items:flex-start}
+.toggle input{width:20px;height:20px;margin-top:2px;flex:none}
+.sample{font-size:12px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.view{animation:in .18s ease-out}@keyframes in{from{opacity:.4;transform:translateY(4px)}}}
+</style>
+
+<div class="app" id="app">
+  <header class="top">
+    <div class="brand"><b>Leyenda Vallenata</b><small>Votaciones · Edición 2027</small></div>
+    <div class="seg" role="group" aria-label="Modo de vista">
+      <button id="m-pub" aria-pressed="true">Público</button>
+      <button id="m-adm" aria-pressed="false">Administración</button>
+    </div>
+  </header>
+  <div class="stripe"></div>
+  <main id="main" class="view"></main>
+</div>
+<div class="tabbar" id="tabbar"><nav aria-label="Navegación principal"></nav></div>
+<div class="toast" id="toast" hidden role="status"></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ini=n=>n.split(/\s+/).filter(w=>/^[A-Za-zÁÉÍÓÚÑ]/.test(w)).slice(0,2).map(w=>w[0]).join('').toUpperCase();
+
+/* ---------- Datos de ejemplo (ficticios) ---------- */
+const CATS=['Acordeón Profesional','Acordeón Aficionado','Acordeón Juvenil','Canción Vallenata Inédita','Piqueria','Desfile de Piloneras'];
+let nextId=100;
+const S={
+  mode:'pub', user:null, loginStep:'email', pubTab:'home', admTab:'resumen', filter:'Todas',
+  sel:null, step:1, pick:null, resView:null, draftOpts:['',''],
+  mine:{ 3:7 },
+  vots:[
+    {id:1,cat:'Acordeón Profesional',t:'Favorito del público · Acordeón Profesional',estado:'abierta',ini:'12 oct 2027, 8:00 a. m.',fin:'16 oct 2027, 11:59 p. m.',tipo:'Persona',
+      opts:[{id:11,n:'Rafael Daza Mejía',s:'Acordeonero · Valledupar',b:'Trayectoria de 14 años en los festivales de la región. Compone y arregla sus propios temas.',v:412},
+            {id:12,n:'Andrés Pumarejo Cuello',s:'Acordeonero · La Paz, Cesar',b:'Finalista en dos ediciones anteriores, reconocido por su toque de puya.',v:388},
+            {id:13,n:'Jhon Sarmiento Ariza',s:'Acordeonero · Villanueva',b:'Estilo tradicional con influencia de la escuela de Fonseca.',v:297}]},
+    {id:2,cat:'Desfile de Piloneras',t:'Mejor agrupación · Piloneras Mayores',estado:'abierta',ini:'12 oct 2027, 8:00 a. m.',fin:'16 oct 2027, 11:59 p. m.',tipo:'Agrupación',
+      opts:[{id:21,n:'Grupo Folclórico Brisas del Guatapurí',s:'48 integrantes · Valledupar',b:'Vestuario de gala con bordados a mano y coreografía de pilón en cuatro tiempos.',v:231},
+            {id:22,n:'Danzas Tierra de Compadres',s:'35 integrantes · Codazzi',b:'Propuesta que mezcla cumbia y paseo en el cierre.',v:264}]},
+    {id:3,cat:'Canción Vallenata Inédita',t:'Canción favorita del público · Paseo',estado:'abierta',ini:'12 oct 2027, 8:00 a. m.',fin:'16 oct 2027, 11:59 p. m.',tipo:'Obra',
+      opts:[{id:31,n:'«Camino de Los Sauces»',s:'Letra y música: M. Orozco',b:'Paseo sobre el regreso al pueblo después de la sequía.',v:143},
+            {id:32,n:'«Cuando Suena la Caja»',s:'Letra y música: L. Ustáriz',b:'Homenaje a los cajeros de la sabana.',v:119},
+            {id:33,n:'«Madrugada en el Cesar»',s:'Letra y música: D. Fuentes',b:'Canto a los arrieros y las lluvias de octubre.',v:132}]},
+    {id:4,cat:'Piqueria',t:'Repentista del año · Categoría Mayor',estado:'programada',ini:'17 oct 2027, 8:00 a. m.',fin:'19 oct 2027, 11:59 p. m.',tipo:'Persona',
+      opts:[{id:41,n:'Emiro Maestre Brito',s:'Repentista · Villanueva',b:'Cuatro finales consecutivas.',v:0},
+            {id:42,n:'Rubén Cotes Lara',s:'Repentista · Valledupar',b:'Conocido por sus décimas improvisadas.',v:0}]},
+    {id:5,cat:'Acordeón Juvenil',t:'Promesa del acordeón · Juvenil',estado:'cerrada',ini:'2 oct 2027, 8:00 a. m.',fin:'9 oct 2027, 11:59 p. m.',tipo:'Persona',
+      opts:[{id:51,n:'Santiago Peñaloza Vega',s:'Acordeonero · 16 años',b:'Campeón departamental juvenil.',v:520},
+            {id:52,n:'Mateo Brugés Lúquez',s:'Acordeonero · 17 años',b:'Estudiante de música en Valledupar.',v:520},
+            {id:53,n:'Camilo Zuleta Rangel',s:'Acordeonero · 15 años',b:'Debutante en el Festival.',v:341}]}
+  ],
+  cfg:{ unSoloVoto:true, ocultar:true }
+};
+const total=v=>v.opts.reduce((a,o)=>a+o.v,0);
+const byId=id=>S.vots.find(v=>v.id===id);
+const ico={
+  home:'<svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>',
+  vote:'<svg viewBox="0 0 24 24"><path d="M4 13l5 5L20 7"/></svg>',
+  res:'<svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>',
+  user:'<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg>'
+};
+function toast(m){const t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>t.hidden=true,2600)}
+
+/* ---------- Render raíz ---------- */
+function render(){
+  $('#m-pub').setAttribute('aria-pressed',S.mode==='pub');
+  $('#m-adm').setAttribute('aria-pressed',S.mode==='adm');
+  const tb=$('#tabbar');
+  if(S.mode==='pub'&&S.user){
+    tb.hidden=false;
+    const items=[['home','Inicio',ico.home],['mine','Mis votos',ico.vote],['res','Resultados',ico.res],['me','Cuenta',ico.user]];
+    tb.firstElementChild.innerHTML=items.map(([k,l,i])=>`<button data-tab="${k}" ${S.pubTab===k&&!S.sel?'aria-current="page"':''}>${i}${l}</button>`).join('');
+  } else tb.hidden=true;
+  const main=$('#main');
+  main.innerHTML = S.mode==='adm' ? admin() : (S.user ? pub() : login());
+  main.classList.remove('view'); void main.offsetWidth; main.classList.add('view');
+}
+
+/* ---------- Público ---------- */
+function login(){
+  if(S.loginStep==='email') return `<div class="login stack">
+    <div class="stack"><span class="eyebrow">Festival de la Leyenda Vallenata</span><h1>Vota por tus favoritos</h1>
+    <p class="muted">Ingresa con tu correo para votar. Recibirás un código de un solo uso, sin contraseñas.</p></div>
+    <form class="stack" id="f-email">
+      <div class="field"><label for="email">Correo electrónico</label><input id="email" type="email" required placeholder="nombre@correo.com" autocomplete="email"></div>
+      <button class="btn primary" type="submit">Enviar código</button>
+    </form>
+    <p class="notice info">Un voto por persona en cada categoría. Una vez confirmado, el voto no se puede cambiar.</p>
+    <p class="sample">Prototipo con datos de ejemplo. El método de identificación (correo, Google o cédula) está pendiente de validación con la Fundación.</p></div>`;
+  return `<div class="login stack">
+    <div class="stack"><span class="eyebrow">Verificación</span><h1>Revisa tu correo</h1>
+    <p class="muted">Enviamos un código de 6 dígitos a <b>${esc(S.email)}</b>.</p></div>
+    <form class="stack" id="f-code">
+      <div class="field"><label for="code">Código de 6 dígitos</label><input id="code" type="text" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" required placeholder="000000" autocomplete="one-time-code"></div>
+      <button class="btn primary" type="submit">Entrar y votar</button>
+      <button class="btn" type="button" id="back-email">Cambiar correo</button>
+    </form>
+    <p class="sample">En este prototipo sirve cualquier código de 6 dígitos.</p></div>`;
+}
+function pub(){
+  if(S.sel){return voteFlow()}
+  if(S.pubTab==='mine') return mine();
+  if(S.pubTab==='res') return resultsPub();
+  if(S.pubTab==='me') return me();
+  return home();
+}
+function home(){
+  const cats=['Todas',...new Set(S.vots.map(v=>v.cat))];
+  const list=S.vots.filter(v=>S.filter==='Todas'||v.cat===S.filter);
+  const open=S.vots.filter(v=>v.estado==='abierta').length, done=Object.keys(S.mine).length;
+  return `<div class="stack">
+    <section class="hero"><span class="eyebrow">Festival 2027 · Valledupar</span><h1>Elige a tu favorito</h1>
+    <p class="muted">${open} votaciones abiertas. Has votado en ${done}. Un voto por categoría.</p></section>
+    <div class="chips" role="group" aria-label="Filtrar por categoría">${cats.map(c=>`<button class="chip" data-filter="${esc(c)}" aria-pressed="${S.filter===c}">${esc(c)}</button>`).join('')}</div>
+    <div class="grid">${list.map(vcard).join('')}</div>
+    <p class="sample">Participantes y cifras son datos de ejemplo.</p></div>`;
+}
+function vcard(v){
+  const voted=S.mine[v.id];
+  const cta=voted?'Ya votaste':v.estado==='abierta'?'Votar ahora':v.estado==='programada'?'Ver opciones':'Ver resultados';
+  return `<button class="card vcard" data-open="${v.id}" aria-label="${esc(v.t)}">
+    <div class="row" style="justify-content:space-between"><span class="cat">${esc(v.cat)}</span><span class="pill ${v.estado}">${v.estado==='abierta'?'Abierta':v.estado==='programada'?'Programada':'Cerrada'}</span></div>
+    <h3>${esc(v.t)}</h3>
+    <div class="meta">${v.opts.length} opciones · ${v.estado==='programada'?'Abre '+esc(v.ini):'Cierra '+esc(v.fin)}</div>
+    <div class="row" style="justify-content:space-between"><b style="color:var(--accent)">${cta} →</b>${voted?'<span class="pill votado">✓ Votado</span>':''}</div></button>`;
+}
+function voteFlow(){
+  const v=byId(S.sel), voted=S.mine[v.id];
+  const back=`<button class="btn sm" data-back style="align-self:flex-start">← Volver</button>`;
+  if(v.estado==='cerrada') return `<div class="stack" style="padding-block:16px">${back}<span class="eyebrow">${esc(v.cat)}</span><h1>${esc(v.t)}</h1>${resultsBlock(v,true)}</div>`;
+  if(S.step===3){
+    const o=v.opts.find(o=>o.id===S.mine[v.id]);
+    return `<div class="stack center" style="padding-block:40px;max-width:480px;margin:0 auto">
+      <div class="big-ok"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div>
+      <h1>Voto registrado</h1><p>Votaste por <b>${esc(o.n)}</b> en ${esc(v.t)}.</p>
+      <p class="muted">Tu voto queda guardado y no se puede modificar. ${S.cfg.ocultar?'Los resultados se publican cuando cierre la votación.':''}</p>
+      <div class="stack"><button class="btn primary" data-next>Votar en otra categoría</button><button class="btn" data-back>Volver al inicio</button></div></div>`;
+  }
+  const steps=`<div class="steps" aria-label="Pasos"><span class="${S.step>=1?'on':''}">1. Elegir</span><span class="${S.step>=2?'on':''}">2. Confirmar</span><span>3. Listo</span></div>`;
+  if(S.step===2){
+    const o=v.opts.find(o=>o.id===S.pick);
+    return `<div class="stack" style="padding-block:16px">${steps}<h1>Confirma tu voto</h1>
+      <div class="card row" style="flex-wrap:nowrap"><div class="av c${v.opts.indexOf(o)%4}">${ini(o.n)}</div><div style="min-width:0"><h3>${esc(o.n)}</h3><div class="muted">${esc(o.s)}</div><div class="sample">${esc(v.t)}</div></div></div>
+      <div class="notice warn"><span class="rn">RN-01</span><span><b>No podrás cambiar este voto.</b> Una vez confirmado queda registrado de forma definitiva.</span></div>
+      <div class="sticky-act"><button class="btn" data-step="1">Cambiar elección</button><button class="btn primary" data-confirm>Confirmar voto</button></div></div>`;
+  }
+  const blocked = voted || v.estado!=='abierta';
+  return `<div class="stack" style="padding-block:16px">${back}${steps}
+    <div><span class="eyebrow">${esc(v.cat)}</span><h1>${esc(v.t)}</h1></div>
+    <div class="row"><span class="pill ${v.estado}">${v.estado==='abierta'?'Abierta':'Programada'}</span><span class="muted">${v.estado==='programada'?'Abre '+esc(v.ini):'Cierra '+esc(v.fin)}</span></div>
+    ${voted?`<div class="notice info"><span class="rn">RN-05</span><span>Ya votaste en esta categoría. Solo se permite un voto por categoría.</span></div>`:''}
+    ${v.estado==='programada'?`<div class="notice warn"><span class="rn">RN-02</span><span>Esta votación aún no está abierta. Podrás votar desde ${esc(v.ini)}.</span></div>`:''}
+    <div class="stack" role="radiogroup" aria-label="Opciones">${v.opts.map((o,i)=>`
+      <button class="opt" role="radio" aria-checked="${S.pick===o.id||voted===o.id}" data-pick="${o.id}" ${blocked?'disabled style="opacity:.8"':''}>
+        <div class="av c${i%4}">${ini(o.n)}</div>
+        <div class="txt"><h3>${esc(o.n)}</h3><div class="muted" style="font-size:13px">${esc(o.s)}</div><p style="margin:6px 0 0;font-size:14px">${esc(o.b)}</p></div>
+        <span class="radio"></span></button>`).join('')}</div>
+    ${blocked?'':`<div class="sticky-act"><button class="btn primary" data-step="2" ${S.pick?'':'disabled'}>Continuar</button></div>`}</div>`;
+}
+function mine(){
+  const ids=Object.keys(S.mine).map(Number);
+  return `<div class="stack"><section class="hero"><span class="eyebrow">Historial</span><h1>Mis votos</h1><p class="muted">Tus votos son definitivos y no se pueden editar.</p></section>
+    ${ids.length?ids.map(id=>{const v=byId(id),o=v.opts.find(o=>o.id===S.mine[id]);return `<div class="card"><div class="cat muted" style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">${esc(v.cat)}</div><h3>${esc(o.n)}</h3><div class="muted">${esc(v.t)}</div></div>`}).join('')
+    :`<div class="card center"><h3>Aún no has votado</h3><p class="muted">Elige una votación abierta en Inicio.</p><button class="btn primary" data-tab-go="home">Ir a votar</button></div>`}</div>`;
+}
+function resultsPub(){
+  return `<div class="stack"><section class="hero"><span class="eyebrow">Resultados</span><h1>Ganadores y conteos</h1></section>
+    ${S.vots.map(v=>{
+      if(v.estado==='cerrada') return `<div class="card stack"><div><span class="eyebrow">${esc(v.cat)}</span><h3>${esc(v.t)}</h3></div>${resultsBlock(v,false)}</div>`;
+      return `<div class="card"><div class="row" style="justify-content:space-between"><h3>${esc(v.t)}</h3><span class="pill ${v.estado}">${v.estado==='abierta'?'Abierta':'Programada'}</span></div>
+        <p class="muted" style="margin:6px 0 0">${S.cfg.ocultar?'Los resultados se publican al cierre de la votación.':'Resultados parciales visibles.'} <span class="rn">RN-06</span></p>
+        ${S.cfg.ocultar?'':resultsBlock(v,false)}</div>`}).join('')}</div>`;
+}
+function resultsBlock(v,header){
+  const t=total(v)||1, max=Math.max(...v.opts.map(o=>o.v));
+  const leaders=v.opts.filter(o=>o.v===max&&max>0);
+  const sorted=[...v.opts].sort((a,b)=>b.v-a.v);
+  return `<div class="stack">${leaders.length>1?`<div class="notice warn"><b>Empate técnico</b><span>${leaders.map(l=>esc(l.n)).join(' y ')} tienen ${max} votos.</span></div>`:''}
+    ${sorted.map(o=>`<div class="res"><span>${esc(o.n)}</span><span class="num">${o.v} · ${(o.v/t*100).toFixed(1)}%</span><div class="bar"><i class="${o.v===max&&max>0?'lead':''}" style="width:${o.v/t*100}%"></i></div></div>`).join('')}
+    <div class="sample">Total: ${total(v)} votos</div></div>`;
+}
+function me(){
+  return `<div class="stack"><section class="hero"><span class="eyebrow">Cuenta</span><h1>Tu sesión</h1></section>
+    <div class="card stack"><div><div class="muted">Correo verificado</div><b>${esc(S.user)}</b></div>
+    <div class="muted" style="font-size:13px">Solo guardamos tu correo para evitar votos duplicados. (RN-03: no se permite votar sin identificarse.)</div>
+    <button class="btn" data-logout>Cerrar sesión</button></div></div>`;
+}
+
+/* ---------- Administración ---------- */
+function admin(){
+  const tabs=[['resumen','Resumen'],['votaciones','Votaciones'],['nueva','Nueva votación'],['resultados','Resultados'],['reglas','Reglas']];
+  const body={resumen:aRes,votaciones:aVots,nueva:aNew,resultados:aResults,reglas:aRules}[S.admTab]();
+  return `<div class="stack"><section class="hero"><span class="eyebrow">Panel de la Fundación</span><h1>Administración</h1></section>
+    <div class="atabs" role="tablist">${tabs.map(([k,l])=>`<button data-adm="${k}" ${S.admTab===k?'aria-current="page"':''}>${l}</button>`).join('')}</div>${body}</div>`;
+}
+function aRes(){
+  const tv=S.vots.reduce((a,v)=>a+total(v),0);
+  return `<div class="stack"><div class="kpis">
+    <div class="kpi"><b>${S.vots.length}</b><span>Votaciones</span></div>
+    <div class="kpi"><b>${S.vots.filter(v=>v.estado==='abierta').length}</b><span>Abiertas ahora</span></div>
+    <div class="kpi"><b>${tv.toLocaleString('es-CO')}</b><span>Votos registrados</span></div>
+    <div class="kpi"><b>${S.vots.filter(v=>total(v)>0&&new Set(v.opts.filter(o=>o.v===Math.max(...v.opts.map(x=>x.v))).map(o=>o.id)).size>1).length}</b><span>Empates por revisar</span></div></div>
+    <h2>Votos por votación</h2>
+    <div class="card stack">${S.vots.map(v=>{const mx=Math.max(...S.vots.map(total))||1;return `<div class="res"><span>${esc(v.t)}</span><span class="num">${total(v)}</span><div class="bar"><i style="width:${total(v)/mx*100}%"></i></div></div>`}).join('')}</div>
+    <p class="sample">Cifras de ejemplo para el prototipo.</p></div>`;
+}
+function aVots(){
+  return `<div class="stack"><div class="row" style="justify-content:space-between"><h2>Todas las votaciones</h2><button class="btn primary sm" data-adm="nueva">+ Nueva votación</button></div>
+  <div class="tbl"><table><thead><tr><th>Votación</th><th>Categoría</th><th>Estado</th><th class="n">Votos</th><th>Acciones</th></tr></thead><tbody>
+  ${S.vots.map(v=>`<tr><td><b>${esc(v.t)}</b><div class="muted" style="font-size:12px">${esc(v.ini)} → ${esc(v.fin)}</div></td><td>${esc(v.cat)}</td>
+    <td><span class="pill ${v.estado}">${v.estado[0].toUpperCase()+v.estado.slice(1)}</span></td><td class="n">${total(v)}</td>
+    <td><div class="row" style="gap:6px">
+      ${v.estado==='programada'?`<button class="btn sm" data-state="${v.id}:abierta">Abrir</button>`:''}
+      ${v.estado==='abierta'?`<button class="btn sm" data-state="${v.id}:cerrada">Cerrar</button>`:''}
+      <button class="btn sm" data-edit="${v.id}">Opciones</button></div></td></tr>`).join('')}
+  </tbody></table></div></div>`;
+}
+function aEdit(){
+  const v=byId(S.editId), locked=total(v)>0;
+  return `<div class="stack"><button class="btn sm" data-adm="votaciones" style="align-self:flex-start">← Volver</button>
+    <div><span class="eyebrow">${esc(v.cat)}</span><h2>${esc(v.t)}</h2></div>
+    ${locked?`<div class="notice warn"><span class="rn">RN-04</span><span><b>Opciones bloqueadas.</b> Esta votación ya recibió ${total(v)} votos. No se pueden editar ni eliminar opciones.</span></div>`:`<div class="notice info"><span>Aún sin votos: puedes editar o eliminar opciones.</span></div>`}
+    <div class="tbl"><table><thead><tr><th>Opción</th><th>Detalle</th><th class="n">Votos</th><th>Acciones</th></tr></thead><tbody>
+    ${v.opts.map(o=>`<tr><td><b>${esc(o.n)}</b></td><td>${esc(o.s)}</td><td class="n">${o.v}</td><td><button class="btn sm" data-del="${v.id}:${o.id}" ${locked?'disabled':''}>Eliminar</button></td></tr>`).join('')}</tbody></table></div></div>`;
+}
+function aNew(){
+  return `<form class="stack" id="f-new"><h2>Crear votación</h2>
+  <div class="form">
+    <div class="field"><label for="n-ed">Edición</label><select id="n-ed"><option>Festival 2027</option><option>Festival 2028 (borrador)</option></select></div>
+    <div class="field"><label for="n-cat">Categoría</label><select id="n-cat">${CATS.map(c=>`<option>${esc(c)}</option>`).join('')}</select></div>
+    <div class="field full"><label for="n-t">Título de la votación</label><input id="n-t" type="text" required placeholder="Ej. Favorito del público · Acordeón Aficionado"></div>
+    <div class="field"><label for="n-i">Apertura</label><input id="n-i" type="datetime-local" required value="2027-10-17T08:00"></div>
+    <div class="field"><label for="n-f">Cierre</label><input id="n-f" type="datetime-local" required value="2027-10-19T23:59"></div>
+    <div class="field"><label for="n-tipo">Tipo de opción</label><select id="n-tipo"><option>Persona</option><option>Agrupación</option><option>Obra</option></select></div>
+  </div>
+  <div class="stack"><h3>Opciones (mínimo 2)</h3>
+    <div class="stack" id="n-opts">${S.draftOpts.map((o,i)=>`<div class="optrow"><input type="text" data-od="${i}" value="${esc(o)}" aria-label="Opción ${i+1}" placeholder="Nombre de la opción ${i+1}"><button class="btn sm" type="button" data-rmo="${i}" aria-label="Quitar opción ${i+1}" ${S.draftOpts.length<=2?'disabled':''}>✕</button></div>`).join('')}</div>
+    <button class="btn sm" type="button" data-addo style="align-self:flex-start">+ Agregar opción</button></div>
+  <button class="btn primary" type="submit">Crear como programada</button></form>`;
+}
+function aResults(){
+  return `<div class="stack"><h2>Resultados completos</h2><p class="muted">Solo el personal autorizado ve los conteos mientras la votación está abierta.</p>
+  ${S.vots.map(v=>`<div class="card stack"><div class="row" style="justify-content:space-between"><div><span class="eyebrow">${esc(v.cat)}</span><h3>${esc(v.t)}</h3></div><span class="pill ${v.estado}">${v.estado[0].toUpperCase()+v.estado.slice(1)}</span></div>${total(v)?resultsBlock(v):'<p class="muted">Sin votos todavía.</p>'}</div>`).join('')}</div>`;
+}
+function aRules(){
+  return `<div class="stack"><h2>Reglas configurables</h2>
+  <p class="muted">Estas reglas están pendientes de validación con el cliente. El panel permite activarlas o cambiarlas sin tocar el código.</p>
+  <div class="card stack">
+    <label class="toggle" for="c-1"><input type="checkbox" id="c-1" data-cfg="unSoloVoto" ${S.cfg.unSoloVoto?'checked':''}><span><b>Un voto por categoría en toda la edición</b> <span class="rn">RN-05</span><br><span class="muted">Si se desactiva, se podría habilitar un voto diario.</span></span></label>
+    <label class="toggle" for="c-2"><input type="checkbox" id="c-2" data-cfg="ocultar" ${S.cfg.ocultar?'checked':''}><span><b>Ocultar resultados parciales al público</b> <span class="rn">RN-06</span><br><span class="muted">Los conteos se muestran al público solo al cerrar.</span></span></label>
+  </div>
+  <div class="card stack"><h3>Reglas fijas</h3>
+    <div><span class="rn">RN-01</span> El voto confirmado no se modifica ni se elimina.</div>
+    <div><span class="rn">RN-02</span> Solo se vota dentro de la ventana de apertura y cierre.</div>
+    <div><span class="rn">RN-03</span> No hay votos anónimos.</div>
+    <div><span class="rn">RN-04</span> Con votos registrados, las opciones quedan bloqueadas.</div></div></div>`;
+}
+
+/* ---------- Eventos ---------- */
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button'); if(!t) return;
+  const d=t.dataset;
+  if(t.id==='m-pub'){S.mode='pub';S.editId=null;render();return}
+  if(t.id==='m-adm'){S.mode='adm';render();return}
+  if(t.id==='back-email'){S.loginStep='email';render();return}
+  if(d.tab){S.pubTab=d.tab;S.sel=null;render();window.scrollTo(0,0);return}
+  if(d.tabGo){S.pubTab=d.tabGo;render();return}
+  if(d.filter){S.filter=d.filter;render();return}
+  if(d.open){S.sel=+d.open;S.step=1;S.pick=null;render();window.scrollTo(0,0);return}
+  if('back' in d){S.sel=null;S.pubTab='home';render();return}
+  if('next' in d){S.sel=null;S.pubTab='home';render();window.scrollTo(0,0);return}
+  if(d.pick){S.pick=+d.pick;render();return}
+  if(d.step){S.step=+d.step;render();window.scrollTo(0,0);return}
+  if('confirm' in d){
+    const v=byId(S.sel);
+    if(v.estado!=='abierta'){toast('Esta votación no está abierta.');return}
+    if(S.mine[v.id]){toast('Ya votaste en esta categoría.');return}
+    S.mine[v.id]=S.pick; v.opts.find(o=>o.id===S.pick).v++; S.step=3; render(); window.scrollTo(0,0);return}
+  if('logout' in d){S.user=null;S.loginStep='email';render();return}
+  if(d.adm){S.admTab=d.adm;S.editId=null;render();return}
+  if(d.state){const[id,st]=d.state.split(':');byId(+id).estado=st;toast(st==='abierta'?'Votación abierta':'Votación cerrada');render();return}
+  if(d.edit){S.editId=+d.edit;S.admTab='editar';render();return}
+  if(d.del){const[vi,oi]=d.del.split(':').map(Number);const v=byId(vi);if(total(v)>0)return;v.opts=v.opts.filter(o=>o.id!==oi);toast('Opción eliminada');render();return}
+  if('addo' in d){syncDraft();S.draftOpts.push('');render();return}
+  if(d.rmo){syncDraft();S.draftOpts.splice(+d.rmo,1);render();return}
+});
+function syncDraft(){document.querySelectorAll('[data-od]').forEach(i=>S.draftOpts[+i.dataset.od]=i.value)}
+document.addEventListener('change',e=>{const c=e.target.dataset&&e.target.dataset.cfg;if(c){S.cfg[c]=e.target.checked;toast('Regla actualizada');render()}});
+document.addEventListener('submit',e=>{
+  e.preventDefault();
+  if(e.target.id==='f-email'){S.email=$('#email').value.trim();S.loginStep='code';render();return}
+  if(e.target.id==='f-code'){S.user=S.email;S.pubTab='home';render();toast('Sesión iniciada');return}
+  if(e.target.id==='f-new'){
+    syncDraft();
+    const opts=S.draftOpts.map(s=>s.trim()).filter(Boolean);
+    if(opts.length<2){toast('Agrega al menos 2 opciones');return}
+    const f=x=>new Date($(x).value).toLocaleString('es-CO',{day:'numeric',month:'short',year:'numeric',hour:'numeric',minute:'2-digit'});
+    S.vots.push({id:++nextId,cat:$('#n-cat').value,t:$('#n-t').value.trim(),estado:'programada',ini:f('#n-i'),fin:f('#n-f'),tipo:$('#n-tipo').value,
+      opts:opts.map(n=>({id:++nextId,n,s:$('#n-tipo').value,b:'Sin descripción todavía.',v:0}))});
+    S.draftOpts=['',''];S.admTab='votaciones';toast('Votación creada');render();
+  }
+});
+/* Pestaña interna de edición de opciones */
+const _admin=admin;
+admin=function(){ if(S.admTab==='editar'&&S.editId) return aEdit(); return _admin(); };
+render();
+</script>
+
+</body></html>
